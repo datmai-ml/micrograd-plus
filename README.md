@@ -8,6 +8,6 @@ While this project follows the core concepts presented in the lecture, several f
 - Modular **MLP, Layer, and Neuron classes**  
 - **Loss functions**: Mean Squared Error (MSE) and Cross-Entropy  
 - **Optimizer**: Stochastic Gradient Descent (SGD)  
-- Examples for **simple functions and classification**
+- Examples for **simple regression and classification**
 
-This project was built as a **learning-focused exercise**, demonstrating a deep understanding of backpropagation, computational graphs, and neural network training — while providing a **reusable framework** for small experiments and custom extensions.
+This project was built as a **learning-focused exercise**, demonstrating a deep understanding of backpropagation, computational graphs, and neural network training while providing a **reusable framework** for small experiments and custom extensions.

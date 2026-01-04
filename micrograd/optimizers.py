@@ -1,5 +1,4 @@
 class SGD:
-    """ Stochastic Gradient Descent Optimizer """
 
     def __init__(self, params, lr=0.001):
         self.params = params
