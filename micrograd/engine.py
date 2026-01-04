@@ -36,7 +36,7 @@ class Value:
     
     def __pow__(self, other):
         assert isinstance(other, (int, float)) # ensures that the exponent is an integer or float
-        out = Value(self.data**other.data, (self, other), f'**{other}')
+        out = Value(self.data**other, (self, other), f'**{other}')
 
         def _backward():
             self.grad += other*self.data**(other - 1) * out.grad
