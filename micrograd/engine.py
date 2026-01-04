@@ -4,10 +4,10 @@ class Value:
     def __init__(self, data, _children=(), _op='', label=''):
         self.data = data
         self.grad = 0.0
-        self._prev = set(_children)
-        self._op = _op
         self.label = label
         self._backward = lambda: None
+        self._prev = set(_children)
+        self._op = _op
     
     def __repr__(self):
         return f"Value(data={self.data})"
@@ -56,7 +56,7 @@ class Value:
         build_topo(self)
         self.grad = 1
         for v in reversed(topo):
-            v._backward
+            v._backward()
 
     def __neg__(self):
         return self * -1
