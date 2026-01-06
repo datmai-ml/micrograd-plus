@@ -85,7 +85,7 @@ class Value:
         return other + (-self)
     
     def __rmul__(self, other):
-        return self * other
+        return other * self
 
     def __truediv__(self, other):
         return self * other**-1
