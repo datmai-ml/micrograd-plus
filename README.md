@@ -4,10 +4,11 @@ A **minimal autograd engine and neural network library in Python**, implemented 
 
 While this project follows the core concepts presented in the lecture, several features have been independently added to extend functionality and usability, including:
 
+- exp and log operations for the Value class
 - Multiple **activation functions**: ReLU, Sigmoid, and Tanh  
 - Modular **MLP, Layer, and Neuron classes**  
 - **Loss functions**: Mean Squared Error (MSE) and Cross-Entropy  
 - **Optimizer**: Stochastic Gradient Descent (SGD)  
-- Examples for **simple regression and classification**
+- Training examples for **simple regression and classification** using the micrograd engine and various activation functions
 
 This project was built as a **learning-focused exercise**, demonstrating a deep understanding of backpropagation, computational graphs, and neural network training while providing a **reusable framework** for small experiments and custom extensions.
