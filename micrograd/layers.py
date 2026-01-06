@@ -13,14 +13,14 @@ class Module:
 
 class Neuron(Module):
 
-    def __init__(self, nin, nonlin, activation):
+    def __init__(self, nin, nonlin=True, activation=None):
         self.w = [Value(random.uniform(-1,1)) for _ in range(nin)]
         self.b = Value(0)
         self.nonlin = nonlin
         self.activation = activation
 
     def __call__(self, x):
-        act = sum((wi*xi for wi, xi in zip(self.w, x)))
+        act = sum((wi*xi for wi, xi in zip(self.w, x)), self.b)
 
         if self.nonlin:
             if self.activation == 'ReLU':
@@ -29,6 +29,8 @@ class Neuron(Module):
                 return sigmoid(act)
             elif self.activation == 'tanh':
                 return tanh(act)
+            elif self.activation == None:
+                return act
         else:
             return act
     
@@ -40,12 +42,12 @@ class Neuron(Module):
     
 class Layer(Module):
 
-    def __init__(self, nin, nout, **kwargs):
-        self.neurons = [Neuron(nin, **kwargs) for _ in range(nout)]
+    def __init__(self, nin, nout, nonlin=True, activation=None, **kwargs):
+        self.neurons = [Neuron(nin, nonlin=nonlin, activation=activation, **kwargs) for _ in range(nout)]
 
     def __call__(self, x):
         out = [n(x) for n in self.neurons]
-        return out[0] if len[out] == 1 else out
+        return out[0] if len(out) == 1 else out
     
     def parameters(self):
         return [p for n in self.neurons for p in n.parameters()]
@@ -55,9 +57,9 @@ class Layer(Module):
     
 class MLP(Module):
 
-    def __init__(self, nin, nouts, activation):
+    def __init__(self, nin, nouts, activation=None):
         sz = [nin] + nouts
-        self.layers = [Layer(sz[i], sz[i+1], nonlin=i!=len(nouts)-1, activation=activation) for i in range(len(nouts))]
+        self.layers = [Layer(sz[i], sz[i+1], nonlin=i!=len(nouts)-1, activation=activation if i!=len(nouts)-1 else None) for i in range(len(nouts))]
 
     def __call__(self, x):
         for layer in self.layers:
