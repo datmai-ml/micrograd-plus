@@ -21,11 +21,11 @@ def sigmoid(x: Value) -> Value:
     return out
 
 def tanh(x: Value) -> Value:
-    t = (math.exp(2*x) - 1)/(math.exp(2*x) + 1)
+    t = (math.exp(2*x.data) - 1)/(math.exp(2*x.data) + 1)
     out = Value(t, (x,), 'tanh')
-
+    
     def _backward():
-        x.grad = (1 - t**2) * out.grad
+        x.grad += (1 - t**2) * out.grad
     out._backward = _backward
-
+    
     return out
